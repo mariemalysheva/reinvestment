@@ -14,7 +14,7 @@ import (
 const (
 	DomainName    = "Reinvestment"
 	DomainVersion = "0"
-	RateDenom     = 10000
+	RateDenom     = 100
 )
 
 type Client struct {
@@ -37,8 +37,8 @@ type Reinvestment struct {
 
 type ReinvestmentRecord struct {
 	Reinvestment Reinvestment
-	Savings      uint64
-	Amount       uint64
+	Savings      int64
+	Amount       int64
 }
 
 func (u Client) GetTypedData(verifyingContract common.Address) apitypes.TypedData {
@@ -48,7 +48,6 @@ func (u Client) GetTypedData(verifyingContract common.Address) apitypes.TypedDat
 			{Name: "clientId", Type: "uint256"},
 			{Name: "firstName", Type: "string"},
 			{Name: "lastName", Type: "string"},
-			{Name: "createdAt", Type: "uint256"},
 		},
 		"EIP712Domain": []apitypes.Type{
 			{Name: "name", Type: "string"},
@@ -69,7 +68,6 @@ func (u Client) GetTypedData(verifyingContract common.Address) apitypes.TypedDat
 		"clientId":  big.NewInt(u.ID),
 		"firstName": u.FirstName,
 		"lastName":  u.LastName,
-		"createdAt": big.NewInt(u.CreatedAt.Unix()),
 	}
 
 	return apitypes.TypedData{

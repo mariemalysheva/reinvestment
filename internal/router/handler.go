@@ -29,6 +29,7 @@ func NewAPI(impl *handler.Implementation) *mux.Router {
 	r.HandleFunc("/price", impl.PostSetPrice).Methods(http.MethodPost)
 	r.HandleFunc("/rate", impl.PostSetRate).Methods(http.MethodPost)
 	r.HandleFunc("/reschedule", impl.PostRescheduleReinvestment).Methods(http.MethodPost)
+	r.HandleFunc("/schedule", impl.GetReinvestmentSchedule).Methods(http.MethodGet)
 	r.HandleFunc("/reinvestments", impl.GetReinvestmentPeriods).Methods(http.MethodGet)
 
 	fs := http.FileServer(http.Dir("./internal/router/json"))

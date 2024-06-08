@@ -1,14 +1,12 @@
 package node
 
 import (
-	"context"
 	"crypto/ecdsa"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 	contractreinvestment "github.com/mariemalysheva/tokenized-reinvestment/contracts/reinvestment"
 	"github.com/mariemalysheva/tokenized-reinvestment/internal/models"
-	"log"
 	"math/big"
 	"time"
 )
@@ -23,10 +21,12 @@ type Client struct {
 func New(
 	nodeClient *ethclient.Client,
 	reinvestmentAddress common.Address,
+	chainID *big.Int,
 ) *Client {
 	return &Client{
 		nodeClient:          nodeClient,
 		reinvestmentAddress: reinvestmentAddress,
+		chainID:             chainID,
 	}
 }
 
@@ -43,15 +43,6 @@ func (c *Client) GetReinvestmentContract() (contr *contractreinvestment.Contract
 }
 
 func (c *Client) GetChainID() *big.Int {
-	if c.chainID != nil {
-		return c.chainID
-	}
-	chainID, err := c.nodeClient.ChainID(context.Background())
-	if err != nil {
-		log.Fatalln("error getting chain id from node client", err.Error())
-	}
-	c.chainID = chainID
-
 	return c.chainID
 }
 

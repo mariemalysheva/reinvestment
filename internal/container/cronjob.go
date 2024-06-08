@@ -25,11 +25,11 @@ func (c *Container) RunCronJobs(
 
 	cr := c.GetCrontab()
 	defer cr.Start()
-	
+
 	svc, err := c.GetCronSvc(ctx)
 	if err != nil {
 		return err
 	}
 
-	return svc.AddCronHandlerFunc(ctx, everyThirdMonth, svc.ReinvestSavings)
+	return svc.AddCronHandlerFunc(everyThirdMonth, svc.ReinvestSavings)
 }

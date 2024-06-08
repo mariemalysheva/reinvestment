@@ -268,7 +268,7 @@
       	},
 		"/reinvestments":{
 			
-		 "post":{
+		 "get":{
 				"summary": "Get all reinvestment periods from current to earliest",
 				
 		"produces": [
@@ -331,6 +331,36 @@
 			 }
 	
       	},
+			   "/schedule":{
+
+				   "get":{
+					   "summary": "Get current reinvestment schedule",
+
+					   "consumes": [
+						   "application/json"
+					   ]
+				   ,
+					   "produces": [
+						   "application/json"
+					   ]
+				   ,
+					   "responses":{
+						   "200":{
+							   "description":"A successful response.",
+							   "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetScheduleReq" }
+						   },
+						   "default":{
+							   "description":"An unexpected error response.",
+							   "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+						   }
+					   },
+
+					   "tags":[
+						   "Reinvestment"
+					   ]
+				   }
+
+			   },
 		"/verify/salt/{client_id}":{
 			
 		 "get":{

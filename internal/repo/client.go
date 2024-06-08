@@ -87,6 +87,7 @@ func (r *Repository) GetClient(ctx context.Context, id int64) (user models.Clien
 		return models.Client{}, err
 	}
 
+	user.ID = id
 	return user, nil
 }
 

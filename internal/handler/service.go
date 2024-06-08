@@ -19,8 +19,9 @@ type AdminSvc interface {
 }
 
 type SchedulerSvc interface {
-	ReinvestSavings(ctx context.Context) error
-	RescheduleCronHandlerFunc(ctx context.Context, schedule string, f func(ctx context.Context) error) (err error)
+	ReinvestSavings() error
+	RescheduleCronHandlerFunc(schedule string, f func() error) (err error)
+	GetCurrentReinvestmentSchedule() string
 }
 
 type Implementation struct {

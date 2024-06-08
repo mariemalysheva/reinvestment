@@ -77,9 +77,13 @@ func (r *Repository) AddReinvestmentRecord(ctx context.Context, tx pgx.Tx, userI
 	values ($1, $2, $3, $4)
 	on conflict do nothing;
 `
-	_, err := tx.Exec(ctx, query, userID, reinv.Reinvestment.ID, reinv.Savings, reinv.Amount)
+	rows, err := tx.Exec(ctx, query, userID, reinv.Reinvestment.ID, reinv.Savings, reinv.Amount)
 	if err != nil {
 		return err
+	}
+
+	if rows.RowsAffected() == 0 {
+		return fmt.Errorf("error when adding user %d reinvestment %d record: %s", userID, reinv.Reinvestment.ID, err)
 	}
 
 	return nil
@@ -124,6 +128,7 @@ func (r *Repository) GetReinvestmentPeriods(ctx context.Context) (reinvs []model
 			return nil, err
 		}
 		period.Asset = common.HexToAddress(assetAddr)
+		period.Rate = period.Rate / models.RateDenom
 		reinvs = append(reinvs, period)
 	}
 

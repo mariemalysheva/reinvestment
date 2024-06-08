@@ -9,6 +9,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/mariemalysheva/tokenized-reinvestment/config"
 	"github.com/mariemalysheva/tokenized-reinvestment/internal/node"
+	"log"
 )
 
 func (c *Container) GetNode(ctx context.Context) (*node.Client, error) {
@@ -21,7 +22,12 @@ func (c *Container) GetNode(ctx context.Context) (*node.Client, error) {
 		return nil, err
 	}
 
-	c.node = node.New(nodeCli, common.HexToAddress(config.ReinvestmentAddr))
+	chainID, err := nodeCli.ChainID(context.Background())
+	if err != nil {
+		log.Fatalln("error getting chain id from node client", err.Error())
+	}
+
+	c.node = node.New(nodeCli, common.HexToAddress(config.ReinvestmentAddr), chainID)
 
 	return c.node, nil
 }

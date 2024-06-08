@@ -32,6 +32,10 @@ func New(
 }
 
 func (s *Service) PostAddUsers(ctx context.Context, users []models.Client) (txHash string, err error) {
+	curReinv, err := s.node.GetCurrentReinvestment()
+	if err != nil {
+		return "", err
+	}
 
 	err = s.repo.InTx(ctx, func(ctx context.Context, tx pgx.Tx) (err error) {
 		var savings []*big.Int
@@ -47,6 +51,18 @@ func (s *Service) PostAddUsers(ctx context.Context, users []models.Client) (txHa
 			users[i].CreatedAt = time.Now()
 
 			users[i].Salt, err = users[i].Sign(s.priv, s.node.GetReinvestmentAddress())
+			if err != nil {
+				return err
+			}
+
+			err = s.repo.AddReinvestmentRecord(ctx, tx, users[i].ID, models.ReinvestmentRecord{
+				Reinvestment: models.Reinvestment{ID: curReinv.ID},
+				Savings:      users[i].Savings,
+				Amount:       users[i].Savings / curReinv.Price,
+			})
+
+			fmt.Println(users[i])
+
 			if err != nil {
 				return err
 			}

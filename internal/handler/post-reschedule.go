@@ -8,7 +8,7 @@ import (
 )
 
 func (i *Implementation) PostRescheduleReinvestment(rw http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
+	_ = r.Context()
 
 	var req wrapper.PostSetScheduleReq
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -17,7 +17,7 @@ func (i *Implementation) PostRescheduleReinvestment(rw http.ResponseWriter, r *h
 		return
 	}
 
-	err = i.schedulerSvc.RescheduleCronHandlerFunc(ctx, req.CronSchedule, i.schedulerSvc.ReinvestSavings)
+	err = i.schedulerSvc.RescheduleCronHandlerFunc(req.CronSchedule, i.schedulerSvc.ReinvestSavings)
 	if err != nil {
 		handleErrResponse(rw, err)
 		return

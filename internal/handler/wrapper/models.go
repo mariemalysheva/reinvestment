@@ -41,8 +41,8 @@ type Reinvestment struct {
 
 type ReinvestmentRecord struct {
 	Reinvestment Reinvestment `json:"reinvestment"`
-	Savings      uint64       `json:"savings"`
-	Amount       uint64       `json:"amount"`
+	Savings      int64        `json:"savings"`
+	Amount       int64        `json:"amount"`
 }
 
 type TxResp struct {
