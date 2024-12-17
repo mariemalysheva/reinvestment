@@ -1,0 +1,412 @@
+{
+		   "swagger":"2.0",
+		   "info":{
+			  "title": "Tokenized Reinvesment",
+			  "version":"version not set"
+		   },
+		   "schemes":[
+			  "http"
+		   ],
+           "host": "localhost:3000",
+		   "paths":{
+			 
+		"/client/records/{client_id}":{
+			
+		 "get":{
+				"summary": "Get client's reinvestment records",
+				
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+			"name": "client_id",
+			"in": "path",
+			"required": true,
+			"description": "client id",
+			"type": "integer"
+			
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.ReinvestmentRecord." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	},
+		"/client/salt/{client_id}":{
+			
+		 "get":{
+				"summary": "Get client info with salt",
+				
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+			"name": "client_id",
+			"in": "path",
+			"required": true,
+			"description": "client id",
+			"type": "integer"
+			
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.models.Client." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	},
+		"/clients":{
+			
+		 "get":{
+				"summary": "Get current clients",
+				
+		"produces": [
+          "application/json"
+        ]
+	,
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.models.Client." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	},
+		"/clients/add":{
+			
+		 "post":{
+				"summary": "Add user batch",
+				
+		"consumes": [
+          "application/json"
+        ]
+	,
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+            "name": "body",
+            "in": "body",
+            "required": true,
+            	"schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostAddUsersReq" }
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.TxResp." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	},
+		"/clients/transfer":{
+			
+		 "post":{
+				"summary": "Transfer user batch",
+				
+		"consumes": [
+          "application/json"
+        ]
+	,
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+            "name": "body",
+            "in": "body",
+            "required": true,
+            	"schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostTransferUsersReq" }
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.TxResp." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	},
+		"/price":{
+			
+		 "post":{
+				"summary": "Set asset price of current reinvestment period",
+				
+		"consumes": [
+          "application/json"
+        ]
+	,
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+            "name": "body",
+            "in": "body",
+            "required": true,
+            	"schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetPriceReq" }
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.TxResp." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Reinvestment"
+				]
+			 }
+	
+      	},
+		"/rate":{
+			
+		 "post":{
+				"summary": "Set reinvestment rate of current reinvestment period",
+				
+		"consumes": [
+          "application/json"
+        ]
+	,
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+            "name": "body",
+            "in": "body",
+            "required": true,
+            	"schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetRateReq" }
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.TxResp." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Reinvestment"
+				]
+			 }
+	
+      	},
+		"/reinvestments":{
+			
+		 "get":{
+				"summary": "Get all reinvestment periods from current to earliest",
+				
+		"produces": [
+          "application/json"
+        ]
+	,
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.Reinvestment." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Reinvestment"
+				]
+			 }
+	
+      	},
+		"/reschedule":{
+			
+		 "post":{
+				"summary": "Set new schedule for reinvestment in the format of cron schedule (* * * * *)",
+				
+		"consumes": [
+          "application/json"
+        ]
+	,
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+            "name": "body",
+            "in": "body",
+            "required": true,
+            	"schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetScheduleReq" }
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "type":"object" }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Reinvestment"
+				]
+			 }
+	
+      	},
+			   "/schedule":{
+
+				   "get":{
+					   "summary": "Get current reinvestment schedule",
+
+					   "consumes": [
+						   "application/json"
+					   ]
+				   ,
+					   "produces": [
+						   "application/json"
+					   ]
+				   ,
+					   "responses":{
+						   "200":{
+							   "description":"A successful response.",
+							   "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetScheduleReq" }
+						   },
+						   "default":{
+							   "description":"An unexpected error response.",
+							   "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+						   }
+					   },
+
+					   "tags":[
+						   "Reinvestment"
+					   ]
+				   }
+
+			   },
+		"/verify/salt/{client_id}":{
+			
+		 "get":{
+				"summary": "verify client salt",
+				
+		"produces": [
+          "application/json"
+        ]
+	,
+		"parameters": [
+          
+		{
+			"name": "client_id",
+			"in": "path",
+			"required": true,
+			"description": "client id",
+			"type": "integer"
+			
+		},
+		{
+			"name": "salt",
+			"in": "query",
+			"required": true,
+			"description": "client salt",
+			"type": "string"
+			
+		}
+        ],
+				"responses":{
+				   "200":{
+					  "description":"A successful response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.struct..." }
+				   },
+				   "default":{
+					  "description":"An unexpected error response.",
+						 "schema": { "$ref": "#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus" }
+				   }
+				},
+				
+				"tags":[
+				   "Client"
+				]
+			 }
+	
+      	}
+		   },
+		   "definitions": 
+			 {"_":{"properties":{},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.Reinvestment.":{"properties":{"data":{"items":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_Reinvestment"},"type":"array"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.ReinvestmentRecord.":{"properties":{"data":{"items":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_ReinvestmentRecord"},"type":"array"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response...github.com.mariemalysheva.tokenized.reinvestment.internal.models.Client.":{"properties":{"data":{"items":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.models_Client"},"type":"array"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper.TxResp.":{"properties":{"data":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_TxResp","type":"object"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.github.com.mariemalysheva.tokenized.reinvestment.internal.models.Client.":{"properties":{"data":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.models_Client","type":"object"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.response_Response.struct...":{"properties":{"data":{"$ref":"#/definitions/_","type":"object"},"message":{"type":"string"},"success":{"type":"boolean"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostAddUsersReq":{"properties":{"clients":{"items":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_UserReq"},"type":"array"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetPriceReq":{"properties":{"price":{"type":"integer"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetRateReq":{"properties":{"rate":{"type":"number"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostSetScheduleReq":{"properties":{"cron_schedule":{"type":"string"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_PostTransferUsersReq":{"properties":{"client_ids":{"items":{"type":"integer"},"type":"array"},"to_address":{"type":"string"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_Reinvestment":{"properties":{"asset":{"type":"string"},"end":{"$ref":"#/definitions/time_Time","type":"object"},"id":{"type":"integer"},"price":{"type":"integer"},"rate":{"type":"number"},"start":{"$ref":"#/definitions/time_Time","type":"object"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_ReinvestmentRecord":{"properties":{"amount":{"type":"integer"},"reinvestment":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_Reinvestment","type":"object"},"savings":{"type":"integer"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_TxResp":{"properties":{"tx_hash":{"type":"string"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.handler.wrapper_UserReq":{"properties":{"first_name":{"type":"string"},"last_name":{"type":"string"},"savings":{"type":"integer"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.internal.models_Client":{"properties":{"created_at":{"$ref":"#/definitions/time_Time","type":"object"},"first_name":{"type":"string"},"id":{"type":"integer"},"last_name":{"type":"string"},"salt":{"type":"string"},"savings":{"type":"integer"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_ProtobufAny":{"properties":{"@type":{"type":"string"}},"type":"object"},"github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_RpcStatus":{"properties":{"code":{"type":"integer"},"details":{"items":{"$ref":"#/definitions/github.com.mariemalysheva.tokenized.reinvestment.tools.swagger_ProtobufAny"},"type":"array"},"message":{"type":"string"}},"type":"object"},"time_Location":{"properties":{"cacheEnd":{"type":"integer"},"cacheStart":{"type":"integer"},"cacheZone":{"$ref":"#/definitions/time_zone","type":"object"},"extend":{"type":"string"},"name":{"type":"string"},"tx":{"items":{"$ref":"#/definitions/time_zoneTrans"},"type":"array"},"zone":{"items":{"$ref":"#/definitions/time_zone"},"type":"array"}},"type":"object"},"time_Time":{"properties":{"ext":{"type":"integer"},"loc":{"$ref":"#/definitions/time_Location","type":"object"},"wall":{"type":"integer"}},"type":"object"},"time_zone":{"properties":{"isDST":{"type":"boolean"},"name":{"type":"string"},"offset":{"type":"integer"}},"type":"object"},"time_zoneTrans":{"properties":{"index":{"type":"integer"},"isstd":{"type":"boolean"},"isutc":{"type":"boolean"},"when":{"type":"integer"}},"type":"object"}}
+		}
